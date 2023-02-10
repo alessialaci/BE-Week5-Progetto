@@ -247,22 +247,23 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 		
 		Postazione postazione = getPostazioneById(idPost);
 		
-		if(postazione.getCounter() < postazione.getMaxOccupanti()) {
-			
-		}
-		
-		if(postazione.isLibero() == false) {
-			System.out.println("Mi dispiace, la postazione è al completo");
-			return;
-		}
-		
+		scan.nextLine();
 		System.out.println("Inserisci la data di prenotazione della postazione nel formato AAAA-MM-GG");
 		String dataPrenotazione = scan.nextLine();
 		
-		// IF utente HA GIÀ UNA PRENOTAZIONE NELLA dataPrenotazione syso "non è possibile prenotare nella data indicata"
+//		if(postazione.getCounter() < postazione.getMaxOccupanti()) {
+//			
+//		}
+		
+//		if(postazione.isLibero() == false) {
+//			System.out.println("Mi dispiace, la postazione è al completo");
+//			return;
+//		}
+		
 
 		
-		
+		// IF utente HA GIÀ UNA PRENOTAZIONE NELLA dataPrenotazione syso "non è possibile prenotare nella data indicata"
+
 		insertPrenotazione(LocalDate.parse(dataPrenotazione), utente, postazione);
 	}
 	
