@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.gestioneprenotazioni.entities.Postazione;
-import it.gestioneprenotazioni.entities.TipoPostazione;
 import it.gestioneprenotazioni.repositories.PostazioneRepository;
 
 @Service
@@ -29,7 +28,7 @@ public class PostazioneService {
 		return postazioneRepo.findById(id);
 	}
 	
-    public List<Postazione> getFromTipoAndCitta(TipoPostazione tipo, String citta) {
+    public List<Postazione> getFromTipoAndCitta(String tipo, String citta) {
     	return postazioneRepo.findPostazioneByTipoAndCittà(tipo, citta);
     }
 

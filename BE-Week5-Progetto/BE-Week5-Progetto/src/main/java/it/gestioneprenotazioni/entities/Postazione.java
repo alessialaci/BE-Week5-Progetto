@@ -20,13 +20,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "postazioni")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Scope("prototype")
@@ -51,5 +49,10 @@ public class Postazione {
 	
 	@OneToMany(mappedBy = "postazione")
 	private Set<Prenotazione> prenotazioni;
+	
+	@Override
+	public String toString() {
+		return "Postazione " + postazioneId + " - Nome edificio: " + edificio.getNome() +" - Città: " + edificio.getCitta() + " - Indirizzo: " + edificio.getIndirizzo();
+	}
 
 }

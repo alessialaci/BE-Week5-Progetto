@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.gestioneprenotazioni.entities.Postazione;
 import it.gestioneprenotazioni.entities.Prenotazione;
-import it.gestioneprenotazioni.entities.Utente;
 import it.gestioneprenotazioni.repositories.PrenotazioneRepository;
 
 @Service

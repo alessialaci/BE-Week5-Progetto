@@ -48,7 +48,6 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		
 		gestioneApp();
 		
         ((AnnotationConfigApplicationContext)ctx).close();
@@ -58,8 +57,8 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 	public void gestioneApp() {
 		System.out.println("Cosa vuoi fare?");
 		System.out.println("1 - Amministrazione");
-		System.out.println("2 - Crea Utente");
-		System.out.println("3 - Crea Prenotazione");
+		System.out.println("2 - Registra Utente");
+		System.out.println("3 - Prenota postazione");
 		System.out.println("4 - Ricerca Postazione per Città e Tipo");
 		
 		int selezione = scan.nextInt();
@@ -75,7 +74,7 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 				creaPrenotazione();
 				break;
 			case(4):
-				//findPostazioneByTipoCitta();
+				findPostazioneByTipoCitta();
 				break;
 			default:
 				System.out.println("Numero non presente in elenco");
@@ -235,8 +234,6 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 	
 	// PRENOTAZIONE --> CREAZIONE
 	public void creaPrenotazione() {
-		//scan.nextLine();
-		
 		System.out.println("Inserisci il tuo numero utente (id)");
 		int idUtente = scan.nextInt();
 		
@@ -286,31 +283,36 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 	
 	
 	// RICERCA
-//	TipoPostazione tipoPostazione;
-//	public void findPostazioneByTipoCitta() {
-//		System.out.println("Inserisci la città");
-//		String citta = scan.nextLine();
-//		
-//		System.out.println("Inserisci il tipo di Postazione");
-//		System.out.println("1 - Privato");
-//		System.out.println("2 - Openspace");
-//		System.out.println("3 - Sala Riunioni");
-//		int tipo = scan.nextInt();
-//		
-//		if(tipo == 1) {
-//			tipoPostazione = TipoPostazione.PRIVATO;
-//		} else if(tipo == 2) {
-//			tipoPostazione = TipoPostazione.OPENSPACE;
-//		} else if(tipo == 3) {
-//			tipoPostazione = TipoPostazione.SALA_RIUNIONI;
-//		} else {
-//			System.out.println("Il numero inserito non è corretto");
-//		}
-//		
-//		List<Postazione> postazioni = ps.getFromTipoAndCitta(tipoPostazione, citta);
-//		postazioni.stream().forEach(pos -> {
-//			System.out.println(pos);
-//		});
-//	}
+	String tipoPostazione;
+	public void findPostazioneByTipoCitta() {
+		System.out.println("Inserisci il tipo di Postazione");
+		System.out.println("1 - Privato");
+		System.out.println("2 - Openspace");
+		System.out.println("3 - Sala Riunioni");
+		int tipo = scan.nextInt();
+		
+		if(tipo == 1) {
+			tipoPostazione = "PRIVATO";
+		} else if(tipo == 2) {
+			tipoPostazione = "OPENSPACE";
+		} else if(tipo == 3) {
+			tipoPostazione = "SALA_RIUNIONI";
+		} else {
+			System.out.println("Il numero inserito non è corretto");
+		}
+		
+		System.out.println("Inserisci la città");
+		scan.next();
+		String citta = scan.nextLine();
+		
+		findFromTipoAndCitta(tipoPostazione, citta);
+	}
+	
+	public void findFromTipoAndCitta(String tipo, String citta) {
+		List<Postazione> postazione = ps.getFromTipoAndCitta(tipo, citta);
+		postazione.stream().forEach(pos -> {
+			System.out.println(pos);
+		});
+	}
 
 }

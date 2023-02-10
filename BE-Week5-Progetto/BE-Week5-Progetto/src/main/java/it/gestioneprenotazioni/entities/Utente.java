@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import org.springframework.context.annotation.Scope;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,7 +37,7 @@ public class Utente {
 	private String nome;
 	private String email;
 	
-	@OneToMany
-	private Set<Prenotazione> prenotazione;
+	@OneToMany(mappedBy = "utente")
+	private Set<Prenotazione> prenotazioni;
 	
 }
