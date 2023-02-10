@@ -26,19 +26,12 @@ public class PrenotazioneService {
 		}
 	}
 	
-	
-//	
-//	public void checkPrenotazione(Utente utente, Postazione postazione, LocalDate data) {
-//		List<Prenotazione> lista = prenotazioneRepo.findByData(data).stream().filter(l -> l.getUtente().getId() == utente.getId()).toList();
-//		if (prenotazioneRepo.countByData(data) >= p.getMaxPartecipanti()) {
-//			System.out.println("Siamo spiacenti, la postazione e gia al completo");
-//			return false;
-//		} else if (result.size() > 0) {
-//			System.out.println("Siamo spiacenti non puoi effettuare piu prenotazioni per la stessa data");
-//			return false;
-//		} else {
-//			return true;
-//		}
-//	}
+    public long getCountPrenotazioni(LocalDate data, int id) {
+    	return prenotazioneRepo.getCountPrenotazioni(data, id);
+    }
+    
+    public long getCountPrenotazioniUtente(LocalDate data, int id) {
+    	return prenotazioneRepo.getCountPrenotazioniUtente(data, id);
+    }
 	
 }

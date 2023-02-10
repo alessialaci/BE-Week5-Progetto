@@ -160,6 +160,7 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 			tipoPost = TipoPostazione.SALA_RIUNIONI;
 		} else {
 			System.out.println("Il numero inserito non è corretto");
+			return;
 		}
 		
 		System.out.println("Inserisci il numero massimo di partecipanti");
@@ -178,7 +179,6 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 		p.setTipo(tipo);
 		p.setMaxOccupanti(maxOccupanti);
 		p.setEdificio(edificio);
-		p.setLibero(true);
 		
 		ps.insert(p);
 		
@@ -249,22 +249,27 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 		
 		scan.nextLine();
 		System.out.println("Inserisci la data di prenotazione della postazione nel formato AAAA-MM-GG");
-		String dataPrenotazione = scan.nextLine();
+		String dataPren = scan.nextLine();
 		
-//		if(postazione.getCounter() < postazione.getMaxOccupanti()) {
-//			
-//		}
+		LocalDate dataPrenotazione = LocalDate.parse(dataPren);
 		
-//		if(postazione.isLibero() == false) {
-//			System.out.println("Mi dispiace, la postazione è al completo");
-//			return;
-//		}
+		long countElementi = prens.getCountPrenotazioni(dataPrenotazione, idPost);
 		
-
+		int nMaxOccupanti = postazione.getMaxOccupanti();
 		
-		// IF utente HA GIÀ UNA PRENOTAZIONE NELLA dataPrenotazione syso "non è possibile prenotare nella data indicata"
-
-		insertPrenotazione(LocalDate.parse(dataPrenotazione), utente, postazione);
+		if(countElementi == nMaxOccupanti) {
+			System.out.println("La postazione " + idPost + " è completa per la data scelta! Non puoi prenotare");
+			System.exit(0);
+		} else if(countElementi < nMaxOccupanti){
+			long contaElementi = prens.getCountPrenotazioniUtente(dataPrenotazione, idUtente);
+			
+			if(contaElementi >= 1) {
+				System.out.println("Hai già una prenotazione per questa data. Non puoi prenotare altre postazioni");
+				System.exit(0);
+			} else {
+				insertPrenotazione(dataPrenotazione, utente, postazione);
+			}
+		}
 	}
 	
 	public Prenotazione insertPrenotazione(LocalDate dataPrenotazione, Utente utente, Postazione postazione) {

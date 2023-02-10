@@ -26,7 +26,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Scope("prototype")
 public class Utente {
 	
@@ -41,13 +40,5 @@ public class Utente {
 	
 	@OneToMany
 	private Set<Prenotazione> prenotazione;
-
-	public Utente(String username, String nome, String email) {
-		this.username = username;
-		this.nome = nome;
-		this.email = email;
-	}
-	
-	
 	
 }

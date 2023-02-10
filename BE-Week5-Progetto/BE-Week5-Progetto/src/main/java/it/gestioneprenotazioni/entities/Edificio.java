@@ -23,7 +23,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Scope("prototype")
 public class Edificio {
 	
