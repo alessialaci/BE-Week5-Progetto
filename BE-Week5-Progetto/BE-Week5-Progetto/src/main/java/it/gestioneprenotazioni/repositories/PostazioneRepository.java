@@ -14,6 +14,7 @@ public interface PostazioneRepository extends JpaRepository<Postazione, Integer>
 
 	@Query(
 			nativeQuery = true,
-			value = "SELECT p FROM postazioni p JOIN edifici ON p.edificio_id = edifici.edificio_id WHERE p.tipo = :tipo AND edifici.citta = :citta")
-	List<Postazione> findPostazioneByTipoAndCittà(@Param("tipo")String tipo, @Param("citta")String citta);
+			value = "SELECT postazioni.* FROM postazioni JOIN edifici ON postazioni.edificio_id = edifici.edificio_id WHERE postazioni.tipo = :tipo AND edifici.citta = :citta")
+	 List<Postazione> findPostazioneByTipoAndCittà(@Param("tipo")String tipo, @Param("citta")String citta);
+	
 }

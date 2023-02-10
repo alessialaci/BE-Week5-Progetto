@@ -74,7 +74,7 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 				creaPrenotazione();
 				break;
 			case(4):
-				findPostazioneByTipoCitta();
+				findPrenotazioneByTipoCitta();
 				break;
 			default:
 				System.out.println("Numero non presente in elenco");
@@ -284,25 +284,25 @@ public class GestionePrenotazioniApplication implements CommandLineRunner {
 	
 	// RICERCA
 	String tipoPostazione;
-	public void findPostazioneByTipoCitta() {
-		System.out.println("Inserisci il tipo di Postazione");
+	public void findPrenotazioneByTipoCitta() {
+		System.out.println("Scegli il tipo della postazione");
 		System.out.println("1 - Privato");
 		System.out.println("2 - Openspace");
 		System.out.println("3 - Sala Riunioni");
-		int tipo = scan.nextInt();
+		int selezioneTipo = scan.nextInt();
 		
-		if(tipo == 1) {
+		if (selezioneTipo == 1) {
 			tipoPostazione = "PRIVATO";
-		} else if(tipo == 2) {
+		} else if (selezioneTipo == 2) {
 			tipoPostazione = "OPENSPACE";
-		} else if(tipo == 3) {
-			tipoPostazione = "SALA_RIUNIONI";
+		} else if (selezioneTipo == 3) {
+			tipoPostazione= "SALA_RIUNIONI";
 		} else {
-			System.out.println("Il numero inserito non è corretto");
-		}
+			System.out.println("Valore non corretto");
+		}	
+		scan.nextLine();
 		
-		System.out.println("Inserisci la città");
-		scan.next();
+		System.out.println("Inserisci la città:");
 		String citta = scan.nextLine();
 		
 		findFromTipoAndCitta(tipoPostazione, citta);
